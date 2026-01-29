@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 // Base API URL (Update if deployed)
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/auth';
 
 export const useAuthStore = create(
     persist(
