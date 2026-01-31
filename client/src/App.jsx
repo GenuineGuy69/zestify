@@ -8,6 +8,7 @@ import RecipeDetail from './pages/RecipeDetail';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import AIChef from './pages/AIChef';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
   return (
@@ -22,15 +23,21 @@ function PageTransitionWrapper() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/recipes/:id" element={<RecipeDetail />} />
-        <Route path="/recipes" element={<Home />} />
-        <Route path="/add" element={<AIChef />} />
-        <Route path="/favorites" element={<Home />} />
-        <Route path="/profile" element={<Home />} />
+
+        {/* Protected Routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipes/:id" element={<RecipeDetail />} />
+          <Route path="/recipes" element={<Home />} />
+          <Route path="/add" element={<AIChef />} />
+          <Route path="/favorites" element={<Home />} />
+          <Route path="/profile" element={<Home />} />
+        </Route>
+
       </Routes>
     </AnimatePresence>
   );

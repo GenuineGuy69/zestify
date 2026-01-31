@@ -1,8 +1,15 @@
+
 import React from 'react';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useAuthStore } from '../../store/auth';
 
 const TopBar = ({ showSearch = true }) => {
+    const { user } = useAuthStore();
+    const displayName = user?.firstName || 'Chef';
+    // Use displayName for seed to ensure it changes per user, or use email/id if available for consistency
+    const avatarSeed = user?.email || displayName;
+
     return (
         <header className="sticky top-0 z-40 w-full px-6 pt-6 pb-2 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md transition-colors">
             <div className="flex items-center justify-between mb-4">
@@ -12,13 +19,13 @@ const TopBar = ({ showSearch = true }) => {
                     </p>
                     <div className="flex items-center gap-2">
                         <h1 className="text-2xl font-extrabold text-text-primary-light dark:text-text-primary-dark">
-                            Alex! 👋
+                            {displayName}! 👋
                         </h1>
                     </div>
                 </div>
                 <button className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary p-0.5">
                     <img
-                        src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
+                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${avatarSeed}`}
                         alt="Profile"
                         className="w-full h-full rounded-full bg-gray-200"
                     />

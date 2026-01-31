@@ -24,7 +24,7 @@ const Register = () => {
             formData.password
         );
         if (success) {
-            navigate('/onboarding');
+            navigate('/');
         }
     };
 

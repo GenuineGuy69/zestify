@@ -14,7 +14,7 @@ const Onboarding = () => {
 
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
-    const finish = () => navigate('/');
+    const finish = () => navigate('/register');
 
     const getStepComponent = () => {
         switch (step) {
